@@ -32,6 +32,8 @@ class GetWebElement:
         element = None
         if locateBy == 'id':
             element = self.d.find_element_by_id(locator)
+        elif locateBy == 'name':
+            element = self.d.find_element_by_name(locator)
         elif locateBy == 'class':
             element = self.d.find_element_by_class_name(locator)
         elif locateBy == 'css':

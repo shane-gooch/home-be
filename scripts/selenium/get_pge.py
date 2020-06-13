@@ -1,4 +1,4 @@
-from base_class import GetWebElement
+from base_selenium_class import GetWebElement
 from decouple import config
 
 
