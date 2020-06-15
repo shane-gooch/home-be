@@ -40,12 +40,28 @@ class GetWebElement:
             element = self.d.find_element_by_css_selector(locator)
         elif locateBy == 'xpath':
             element = self.d.find_element_by_xpath(locator)
+        else:
+            print("Incorrect locate by type")
         return element
 
-    def set_wait(self, locator, waitTime=10):
+    def set_wait(self, locateBy, locator, waitTime=10):
+        if locateBy == 'id':
+            locateBy = By.ID
+        elif locateBy == 'class':
+            locateBy = By.CLASS_NAME
+        elif locateBy == 'name':
+            locateBy = By.NAME
+        elif locateBy == 'css':
+            locateBy = By.CSS_SELECTOR
+        elif locateBy == 'xpath':
+            locateBy = By.XPATH
+        elif locateBy == 'tag_name':
+            locateBy == By.TAG_NAME
+        else:
+            print("Incorrect locate by type")
         try:
             element = WebDriverWait(self.d, waitTime).until(
-                EC.presence_of_element_located((By.ID, locator)))
+                EC.presence_of_element_located((locateBy, locator)))
         except TimeoutException:
             print("Error: Can't locate element - Quitting Browser")
             self.quit()

@@ -11,8 +11,12 @@ class GetPge(GetWebElement):
         super().get_element("id", "password").send_keys(config('PGE_PASSWORD'))
         super().get_element("id", "home_login_submit").click()
 
-        super().set_wait("spntotalAmountDueUI")
+        super().set_wait("id", "spntotalAmountDueUI")
 
         bill_total = super().get_element("id", "spntotalAmountDueUI").text
         super().quit()
         return round(float(bill_total[1:])/numToSplitBy, 2)
+
+
+test = GetPge()
+print(test.getTotal(4))
